@@ -339,7 +339,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-Wno-stdlibcxx-not-found";
 				SDKROOT = macosx;
-				SYMROOT = /Users/laobamac/Desktop/KextBuidings/SimpleRtlBT;
+				SYMROOT = $(PROJECT_DIR)/build;
 			};
 			name = Debug;
 		};
@@ -383,7 +383,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-Wno-stdlibcxx-not-found";
 				SDKROOT = macosx;
-				SYMROOT = /Users/laobamac/Desktop/KextBuidings/SimpleRtlBT;
+				SYMROOT = $(PROJECT_DIR)/build;
 			};
 			name = Release;
 		};

@@ -36,7 +36,7 @@ jobs:
         run: |
           awk 'NR==342' SimpleRtlBt.xcodeproj/project.pbxproj
           echo "---"
-          sed -n '340,344p' SimpleRtlBt.xcodeproj/project.pbxproj | cat -A
+          sed -n '340,344p' SimpleRtlBt.xcodeproj/project.pbxproj | cat -v
       
 
       - name: Install xcpretty

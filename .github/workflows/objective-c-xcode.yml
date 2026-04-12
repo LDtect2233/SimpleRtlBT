@@ -15,6 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Debug project file
+        run: |
+          echo "=== Lines 338-346 ==="
+          sed -n '338,346p' SimpleRtlBt.xcodeproj/project.pbxproj
+          echo "=== plutil lint ==="
+          plutil -lint SimpleRtlBt.xcodeproj/project.pbxproj || true
+
       - name: Install xcpretty
         run: gem install xcpretty
 

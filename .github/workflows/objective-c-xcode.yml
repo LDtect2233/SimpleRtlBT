@@ -21,6 +21,14 @@ jobs:
           sed -n '338,346p' SimpleRtlBt.xcodeproj/project.pbxproj
           echo "=== plutil lint ==="
           plutil -lint SimpleRtlBt.xcodeproj/project.pbxproj || true
+          
+      - name: Debug raw bytes
+        run: |
+          xxd SimpleRtlBt.xcodeproj/project.pbxproj | head -20
+          echo "---"
+          wc -l SimpleRtlBt.xcodeproj/project.pbxproj
+          echo "---"
+          file SimpleRtlBt.xcodeproj/project.pbxproj
 
       - name: Install xcpretty
         run: gem install xcpretty

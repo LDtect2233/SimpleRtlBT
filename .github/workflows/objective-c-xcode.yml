@@ -26,7 +26,7 @@ jobs:
         run: |
           python3 -c "
           with open('SimpleRtlBt.xcodeproj/project.pbxproj', 'rb') as f:
-          data = f.read()
+              data = f.read()
           print('Total bytes:', len(data))
           print('First 20 bytes:', data[:20].hex())
           print('CR count:', data.count(b'\r'))

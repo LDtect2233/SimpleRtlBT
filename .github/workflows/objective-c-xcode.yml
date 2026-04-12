@@ -24,11 +24,15 @@ jobs:
           
       - name: Debug raw bytes
         run: |
-          xxd SimpleRtlBt.xcodeproj/project.pbxproj | head -20
-          echo "---"
-          wc -l SimpleRtlBt.xcodeproj/project.pbxproj
-          echo "---"
-          file SimpleRtlBt.xcodeproj/project.pbxproj
+          python3 -c "
+          with open('SimpleRtlBt.xcodeproj/project.pbxproj', 'rb') as f:
+          data = f.read()
+          print('Total bytes:', len(data))
+          print('First 20 bytes:', data[:20].hex())
+          print('CR count:', data.count(b'\r'))
+          print('Last 20 bytes:', data[-20:].hex())
+          "
+      
 
       - name: Install xcpretty
         run: gem install xcpretty

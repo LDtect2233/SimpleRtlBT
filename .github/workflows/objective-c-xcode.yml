@@ -32,6 +32,11 @@ jobs:
           print('CR count:', data.count(b'\r'))
           print('Last 20 bytes:', data[-20:].hex())
           "
+      - name: Debug line 342
+        run: |
+          awk 'NR==342' SimpleRtlBt.xcodeproj/project.pbxproj
+          echo "---"
+          sed -n '340,344p' SimpleRtlBt.xcodeproj/project.pbxproj | cat -A
       
 
       - name: Install xcpretty

@@ -45,11 +45,25 @@ jobs:
               data = f.read()
           print('CR count:', data.count(b'\r'))
           "
-          
-      - name: Convert project to XML format
+      - name: Restore and fix line endings
         run: |
-          plutil -convert xml1 SimpleRtlBt.xcodeproj/project.pbxproj
-          
+          git checkout -- SimpleRtlBt.xcodeproj/project.pbxproj
+          perl -pi -e 's/\r\n?/\n/g' SimpleRtlBt.xcodeproj/project.pbxproj
+
+      - name: Set scheme (hardcoded)
+        run: |
+          echo "SimpleRtlBT" > default
+          echo "Using scheme: SimpleRtlBT"
+
+      - name: Build
+        env:
+          scheme: ${{ 'default' }}
+        run: |
+            if [ $scheme = default ]; then scheme=$(cat default); fi
+            if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+            file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+            xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
+            
       - name: Install xcpretty
         run: gem install xcpretty
 

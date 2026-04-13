@@ -54,6 +54,10 @@ jobs:
         run: |
           plutil -lint SimpleRtlBt.xcodeproj/project.pbxproj
 
+      - name: Show lines 340-345 of pbxproj
+        run: |
+          sed -n '340,345p' SimpleRtlBt.xcodeproj/project.pbxproj
+
             
       - name: Install xcpretty
         run: gem install xcpretty

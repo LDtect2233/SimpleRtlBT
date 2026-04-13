@@ -54,13 +54,6 @@ jobs:
       - name: Install xcpretty
         run: gem install xcpretty
 
-      - name: Debug line 342
-        run: |
-          echo "=== Line 342 of project.pbxproj ==="
-          sed -n '342p' SimpleRtlBt.xcodeproj/project.pbxproj | cat -A
-          echo "=== Does it end with semicolon? ==="
-          sed -n '342p' SimpleRtlBt.xcodeproj/project.pbxproj | grep -q ';$' && echo "YES" || echo "NO"
-
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json -project SimpleRtlBt.xcodeproj | tr -d "\n")

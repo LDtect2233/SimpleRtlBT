@@ -50,6 +50,10 @@ jobs:
           git checkout -- SimpleRtlBt.xcodeproj/project.pbxproj
           perl -pi -e 's/\r\n?/\n/g' SimpleRtlBt.xcodeproj/project.pbxproj
 
+      - name: Find missing semicollum
+        run: |
+          plutil -lint SimpleRtlBt.xcodeproj/project.pbxproj
+
             
       - name: Install xcpretty
         run: gem install xcpretty

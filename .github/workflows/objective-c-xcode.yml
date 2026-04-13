@@ -45,6 +45,10 @@ jobs:
               data = f.read()
           print('CR count:', data.count(b'\r'))
           "
+          
+      - name: Fix line endings
+        run: |
+          find SimpleRtlBt.xcodeproj -type f | xargs sed -i 's/\r//'
 
       - name: Install xcpretty
         run: gem install xcpretty

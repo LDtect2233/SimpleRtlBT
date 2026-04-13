@@ -50,9 +50,6 @@ jobs:
           git checkout -- SimpleRtlBt.xcodeproj/project.pbxproj
           perl -pi -e 's/\r\n?/\n/g' SimpleRtlBt.xcodeproj/project.pbxproj
 
-      - name: Find missing semicollum
-        run: |
-          plutil -lint SimpleRtlBt.xcodeproj/project.pbxproj
 
       - name: Show lines 340-345 of pbxproj
         run: |

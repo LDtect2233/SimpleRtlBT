@@ -38,17 +38,6 @@ jobs:
           echo "---"
           sed -n '340,344p' SimpleRtlBt.xcodeproj/project.pbxproj | cat -v
 
-      - name: Debug Xcode
-        run: |
-          xcodebuild -version
-          ls -la SimpleRtlBt.xcodeproj/
-          plutil SimpleRtlBt.xcodeproj/project.pbxproj
-      - name: Debug bundle contents
-        run: |
-            find SimpleRtlBt.xcodeproj -type f
-            echo "---"
-            cat SimpleRtlBt.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-
       - name: Install xcpretty
         run: gem install xcpretty
 

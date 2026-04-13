@@ -48,7 +48,7 @@ jobs:
           
       - name: Fix line endings
         run: |
-          find SimpleRtlBt.xcodeproj -type f | xargs sed -i '' 's/\r//'
+          find SimpleRtlBt.xcodeproj -type f | xargs -I {} perl -pi -e 's/\r//g' {}
 
       - name: Install xcpretty
         run: gem install xcpretty

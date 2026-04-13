@@ -37,6 +37,14 @@ jobs:
           awk 'NR==342' SimpleRtlBt.xcodeproj/project.pbxproj
           echo "---"
           sed -n '340,344p' SimpleRtlBt.xcodeproj/project.pbxproj | cat -v
+          
+      - name: Debug xcscheme
+        run: |
+          python3 -c "
+          with open('SimpleRtlBt.xcodeproj/xcshareddata/xcschemes/SimpleRtlBT.xcscheme', 'rb') as f:
+              data = f.read()
+          print('CR count:', data.count(b'\r'))
+          "
 
       - name: Install xcpretty
         run: gem install xcpretty
@@ -48,13 +56,7 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
 
-      - name: Debug xcscheme
-        run: |
-          python3 -c "
-          with open('SimpleRtlBt.xcodeproj/xcshareddata/xcschemes/SimpleRtlBT.xcscheme', 'rb') as f:
-              data = f.read()
-          print('CR count:', data.count(b'\r'))
-          "
+      
 
       - name: Build
         env:

@@ -46,10 +46,17 @@ jobs:
           print('CR count:', data.count(b'\r'))
           "
           
-      - name: Fix line endings
+      - name: Repair project.pbxproj
         run: |
-          find SimpleRtlBt.xcodeproj -type f | xargs -I {} perl -pi -e 's/\r//g' {}
-
+          # Fix line endings
+          find SimpleRtlBt.xcodeproj -type f -exec perl -pi -e 's/\r//g' {} \;
+    
+          # Add missing semicolon at line 342 if needed
+          sed -i '' '342s/[^;]$/&;/' SimpleRtlBt.xcodeproj/project.pbxproj
+    
+          # Optional: validate syntax
+          plutil -lint SimpleRtlBt.xcodeproj/project.pbxproj || true
+          
       - name: Install xcpretty
         run: gem install xcpretty
 
